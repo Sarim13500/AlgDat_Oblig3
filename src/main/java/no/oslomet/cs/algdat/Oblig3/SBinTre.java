@@ -3,20 +3,21 @@ package no.oslomet.cs.algdat.Oblig3;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 public class SBinTre<T> {
     private static final class Node<T>   // en indre nodeklasse
     {
         private T verdi;                   // nodens verdi
-        private Node<T> venstre, høyre;    // venstre og høyre barn
+        private Node<T> venstrebarn, høyrebarn;    // venstre og høyre barn
         private Node<T> forelder;          // forelder
 
         // konstruktør
         private Node(T verdi, Node<T> v, Node<T> h, Node<T> forelder) {
             this.verdi = verdi;
-            venstre = v;
-            høyre = h;
+            venstrebarn = v;
+            høyrebarn = h;
             this.forelder = forelder;
         }
 
@@ -52,8 +53,8 @@ public class SBinTre<T> {
 
         while (p != null) {
             int cmp = comp.compare(verdi, p.verdi);
-            if (cmp < 0) p = p.venstre;
-            else if (cmp > 0) p = p.høyre;
+            if (cmp < 0) p = p.venstrebarn;
+            else if (cmp > 0) p = p.høyrebarn;
             else return true;
         }
 
@@ -83,7 +84,47 @@ public class SBinTre<T> {
     }
 
     public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+
+        Objects.requireNonNull(verdi, "ikke lov med null verdi");
+
+        Node<T> p = rot;                          // p starter i roten
+        Node<T> q = null;
+        int variabel = 0;                             // introduserer en hjelpevariabel
+
+        while (p != null)
+        {
+            q = p;                                      //q er p sin forelder
+            variabel = comp.compare(verdi,p.verdi);
+
+            if (variabel<0){
+                p=p.venstrebarn;
+            }
+            else {
+                p=p.høyrebarn;
+            }
+
+        }
+
+
+        p = new Node<>(verdi, null); // oppretter en ny node
+
+        if (q == null) {
+            rot = p;                  // rotnoden
+        }
+        else if (variabel < 0) {
+            q.venstrebarn = p;         // til venstre for q
+        }
+        else {
+            q.høyrebarn = p;                        // til høyre for q
+        }
+
+
+
+
+
+        antall++;
+        endringer++;
+        return true;
     }
 
     public boolean fjern(T verdi) {
@@ -96,6 +137,8 @@ public class SBinTre<T> {
 
     public int antall(T verdi) {
         throw new UnsupportedOperationException("Ikke kodet ennå!");
+
+
     }
 
     public void nullstill() {
