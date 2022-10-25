@@ -93,37 +93,34 @@ public class SBinTre<T> {
 
         while (p != null)
         {
-            q = p;                                      //q er p sin forelder
-            variabel = comp.compare(verdi,p.verdi);
+            q = p;                                      //q er p sin forrige
+            variabel = comp.compare(verdi,p.verdi);     // sammenligner verdi med p sin verdi
 
-            if (variabel<0){
+            if (variabel<0){                            //hvis verdi er mindre enn p sin verdi
                 p=p.venstrebarn;
             }
-            else {
+            else {                                      //hvis verdi er større eller lik p sin verdi
                 p=p.høyrebarn;
             }
 
         }
 
 
-        p = new Node<>(verdi, null); // oppretter en ny node
+        p = new Node<>(verdi, q); // oppretter en ny node med verdi=verdi og forelder=q
 
         if (q == null) {
             rot = p;                  // rotnoden
         }
         else if (variabel < 0) {
-            q.venstrebarn = p;         // til venstre for q
+            q.venstrebarn = p;         // setter venstrebarn
         }
         else {
-            q.høyrebarn = p;                        // til høyre for q
+            q.høyrebarn = p;                  // setter høyrebarn
         }
-
-
 
 
 
         antall++;
-        endringer++;
         return true;
     }
 
