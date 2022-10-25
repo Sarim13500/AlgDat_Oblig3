@@ -133,7 +133,29 @@ public class SBinTre<T> {
     }
 
     public int antall(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+
+        int teller = 0;
+
+        if (!inneholder(verdi)){
+            return teller;
+        }
+
+        Node<T> p = rot;
+        while (p != null){
+
+            int cmp = comp.compare(verdi,p.verdi);
+            if (p.verdi.equals(verdi)){
+                teller++;
+            }
+            if (cmp<0){
+                p=p.venstrebarn;
+            }
+
+        }
+
+
+return teller;
+        //throw new UnsupportedOperationException("Ikke kodet ennå!");
 
 
     }
