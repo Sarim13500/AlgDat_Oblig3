@@ -102,9 +102,7 @@ public class SBinTre<T> {
             else {                                      //hvis verdi er større eller lik p sin verdi
                 p=p.høyrebarn;
             }
-
         }
-
 
         p = new Node<>(verdi, q); // oppretter en ny node med verdi=verdi og forelder=q
 
@@ -117,8 +115,6 @@ public class SBinTre<T> {
         else {
             q.høyrebarn = p;                  // setter høyrebarn
         }
-
-
 
         antall++;
         return true;
@@ -188,10 +184,25 @@ return teller;
     private static <T> Node<T> nestePostorden(Node<T> p) {
 
 
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        Node<T> parent=p.forelder;          //oppretter p sin foreldereNode
+
+        if(parent == null){
+            return null;                    //Hvis parent er null så returneres null
+        }
+
+        if(parent.høyrebarn==p || parent.høyrebarn==null){
+            return parent; //returnerer parent hvis parent sin høyre er p eller parent sin høyre er null
+        }
+        else{
+            return førstePostorden(parent.høyrebarn); // kaller på førstepostorden
+        }
+
+        //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
+
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
