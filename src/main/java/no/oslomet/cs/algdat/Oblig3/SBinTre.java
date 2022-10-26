@@ -150,6 +150,9 @@ public class SBinTre<T> {
             if (cmp<0){
                 p=p.venstrebarn;
             }
+            else {
+                p=p.høyrebarn;
+            }
 
         }
 
