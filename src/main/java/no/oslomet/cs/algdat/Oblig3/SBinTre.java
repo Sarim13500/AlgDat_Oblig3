@@ -168,10 +168,26 @@ return teller;
     }
 
     private static <T> Node<T> førstePostorden(Node<T> p) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+
+
+        Objects.requireNonNull(p); //Sjekker om p er Null
+
+        while(true){
+            if(p.venstrebarn != null){
+                p=p.venstrebarn;        //Venstrebarn til p
+            }else if(p.høyrebarn != null){
+                p=p.høyrebarn;          //Høyrebarn til p
+            }
+            else{
+                return p;
+            }
+        }
+        //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
+
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
