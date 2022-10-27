@@ -229,7 +229,19 @@ return teller;
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
 
 
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+
+        if (p==null){
+            return;                              //returnerer hvis p er null
+        }
+
+        postordenRecursive(p.venstrebarn, oppgave);                 //rekursivt kall for p sitt venstrebarn
+
+        postordenRecursive(p.høyrebarn,oppgave);                    //rekursivt kall for p sitt høyrebarn
+
+        oppgave.utførOppgave(p.verdi);
+
+
+        //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public ArrayList<T> serialize() {
