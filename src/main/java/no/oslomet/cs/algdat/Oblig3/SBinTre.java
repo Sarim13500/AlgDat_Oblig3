@@ -203,14 +203,32 @@ return teller;
     public void postorden(Oppgave<? super T> oppgave) {
 
 
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        Node<T> p= rot;                                 //setter p til å være roten
+
+        Node<T> forst = førstePostorden(p);             // kaller på førstePostorden for p
+
+        oppgave.utførOppgave(forst.verdi);
+        while (forst.forelder != null){
+            forst= nestePostorden(forst);
+            oppgave.utførOppgave(Objects.requireNonNull(forst.verdi));
+        }
+
+
+
+
+        //throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
+
         postordenRecursive(rot, oppgave);
+
+
     }
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
+
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
